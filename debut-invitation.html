@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Enchanted Debut Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight:#070f24;
+    --deep-blue:#0f2347;
+    --royal-blue:#1c3a6c;
+    --mist-blue:#6f97cf;
+    --moon-glow:#d6e6ff;
+    --ivory:#f5f1e6;
+    --gold:#cdb27c;
+    --gold-soft:#e9dcb8;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--midnight);
+    color:var(--ivory);
+    font-family:'EB Garamond', serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  h1,h2,h3,.script{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.04em;
+  }
+
+  .script{
+    font-family:'Tangerine', cursive;
+    font-weight:700;
+    color:var(--gold-soft);
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Magic background (stars + fireflies) ---------- */
+  #magic-bg{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1a3666 0%, var(--midnight) 55%),
+      var(--midnight);
+  }
+
+  .star{
+    position:absolute;
+    background:var(--moon-glow);
+    border-radius:50%;
+    opacity:0.6;
+    animation:twinkle ease-in-out infinite;
+  }
+
+  @keyframes twinkle{
+    0%,100%{opacity:0.15;}
+    50%{opacity:0.9;}
+  }
+
+  .firefly{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--gold-soft);
+    box-shadow:0 0 8px 2px rgba(233,220,184,0.8), 0 0 16px 6px rgba(205,178,124,0.35);
+    animation:drift ease-in-out infinite alternate;
+  }
+
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1); opacity:0.3;}
+    50%{transform:translate(var(--dx), var(--dy)) scale(1.3); opacity:0.95;}
+    100%{transform:translate(0,0) scale(1); opacity:0.3;}
+  }
+
+  /* ---------- Layout helpers ---------- */
+  section{
+    position:relative;
+    z-index:1;
+    padding:6rem 1.5rem;
+    max-width:880px;
+    margin:0 auto;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 1.5rem;
+    position:relative;
+  }
+
+  .moon{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #ffffff, var(--moon-glow) 60%, #a9c4ec 100%);
+    box-shadow:0 0 60px 20px rgba(214,230,255,0.35), 0 0 120px 60px rgba(112,151,207,0.15);
+    margin-bottom:2.5rem;
+  }
+
+  .eyebrow{
+    font-size:1.4rem;
+    color:var(--mist-blue);
+    text-transform:uppercase;
+    letter-spacing:0.35em;
+    margin-bottom:1.2rem;
+  }
+
+  .hero .script{
+    font-size:3.5rem;
+    display:block;
+    margin-bottom:0.5rem;
+  }
+
+  .hero h1{
+    font-size:clamp(2.8rem, 9vw, 5.5rem);
+    line-height:1.05;
+    font-style:italic;
+    background:linear-gradient(180deg, #ffffff, var(--moon-glow) 60%, var(--mist-blue));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+    margin-bottom:1.5rem;
+  }
+
+  .hero p.subline{
+    font-size:1.25rem;
+    color:var(--moon-glow);
+    max-width:32ch;
+    line-height:1.7;
+    margin-bottom:2.5rem;
+  }
+
+  .date-chip{
+    border:1px solid var(--gold);
+    border-radius:999px;
+    padding:0.85rem 2.2rem;
+    font-size:1.05rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    background:rgba(28,58,108,0.35);
+    backdrop-filter:blur(2px);
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:2.2rem;
+    font-size:0.85rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--mist-blue);
+    opacity:0.7;
+    animation:bob 2.6s ease-in-out infinite;
+  }
+
+  @keyframes bob{
+    0%,100%{transform:translateY(0); opacity:0.4;}
+    50%{transform:translateY(8px); opacity:0.9;}
+  }
+
+  /* ---------- Ornate cards with vine corners ---------- */
+  .card{
+    position:relative;
+    border:1px solid rgba(207,178,124,0.35);
+    background:linear-gradient(160deg, rgba(28,58,108,0.35), rgba(15,35,71,0.55));
+    border-radius:4px;
+    padding:3.5rem 2.5rem;
+    text-align:center;
+  }
+
+  .vine{
+    position:absolute;
+    width:64px;
+    height:64px;
+    opacity:0.85;
+  }
+  .vine.tl{top:-1px; left:-1px;}
+  .vine.tr{top:-1px; right:-1px; transform:scaleX(-1);}
+  .vine.bl{bottom:-1px; left:-1px; transform:scaleY(-1);}
+  .vine.br{bottom:-1px; right:-1px; transform:scale(-1,-1);}
+
+  /* ---------- Invitation section ---------- */
+  .invitation h2{
+    font-size:2.2rem;
+    font-style:italic;
+    color:var(--moon-glow);
+    margin-bottom:1.8rem;
+  }
+
+  .invitation p{
+    font-size:1.18rem;
+    line-height:1.95;
+    color:var(--ivory);
+    margin-bottom:1.4rem;
+  }
+
+  .invitation .name-line{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.4rem;
+    font-style:italic;
+    color:var(--gold-soft);
+    margin:1.2rem 0;
+  }
+
+  /* ---------- Section heading shared ---------- */
+  .section-eyebrow{
+    text-align:center;
+    color:var(--mist-blue);
+    text-transform:uppercase;
+    letter-spacing:0.35em;
+    font-size:0.85rem;
+    margin-bottom:0.8rem;
+  }
+
+  .section-title{
+    text-align:center;
+    font-size:clamp(2rem, 5vw, 2.8rem);
+    font-style:italic;
+    color:var(--moon-glow);
+    margin-bottom:3rem;
+  }
+
+  /* ---------- Details grid ---------- */
+  .details-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.5rem;
+  }
+
+  .detail-card{
+    border:1px solid rgba(111,151,207,0.35);
+    border-radius:4px;
+    padding:2.2rem 1.5rem;
+    text-align:center;
+    background:rgba(15,35,71,0.4);
+    transition:border-color 0.3s, transform 0.3s;
+  }
+
+  .detail-card:hover{
+    border-color:var(--gold);
+    transform:translateY(-4px);
+  }
+
+  .detail-card .icon{
+    font-size:1.8rem;
+    margin-bottom:0.8rem;
+    display:block;
+  }
+
+  .detail-card h3{
+    font-size:1.3rem;
+    color:var(--gold-soft);
+    margin-bottom:0.6rem;
+    font-style:italic;
+  }
+
+  .detail-card p{
+    color:var(--moon-glow);
+    line-height:1.7;
+    font-size:1rem;
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:1.2rem;
+    flex-wrap:wrap;
+    margin-top:3rem;
+  }
+
+  .countdown .unit{
+    min-width:90px;
+    border:1px solid rgba(207,178,124,0.4);
+    border-radius:4px;
+    padding:1.2rem 0.5rem;
+    text-align:center;
+    background:rgba(28,58,108,0.3);
+  }
+
+  .countdown .num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.4rem;
+    color:var(--gold-soft);
+    display:block;
+  }
+
+  .countdown .label{
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--mist-blue);
+  }
+
+  /* ---------- RSVP ---------- */
+  .rsvp-note{
+    text-align:center;
+    color:var(--moon-glow);
+    font-size:1.1rem;
+    line-height:1.8;
+    margin-bottom:2.5rem;
+  }
+
+  .rsvp-frame-wrap{
+    border:1px solid rgba(207,178,124,0.35);
+    border-radius:4px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.03);
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .rsvp-frame-wrap iframe{
+    width:100%;
+    border:none;
+    min-height:900px;
+    filter: invert(0.92) hue-rotate(180deg);
+  }
+
+  .rsvp-placeholder{
+    text-align:center;
+    padding:3rem 1.5rem;
+    color:var(--mist-blue);
+    font-size:0.98rem;
+    line-height:1.9;
+  }
+
+  .rsvp-placeholder code{
+    display:block;
+    margin-top:1rem;
+    padding:1rem;
+    border:1px dashed rgba(207,178,124,0.4);
+    border-radius:4px;
+    font-family:monospace;
+    font-size:0.8rem;
+    color:var(--gold-soft);
+    word-break:break-all;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    padding:4rem 1.5rem 5rem;
+    position:relative;
+    z-index:1;
+  }
+
+  footer .script{
+    font-size:2.6rem;
+    display:block;
+    margin-bottom:0.5rem;
+  }
+
+  footer p{
+    color:var(--mist-blue);
+    font-size:0.95rem;
+    letter-spacing:0.1em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .star, .firefly, .scroll-cue{animation:none !important;}
+  }
+
+  /* ---------- Cover / Envelope screen ---------- */
+  body.locked{
+    overflow:hidden;
+    height:100vh;
+  }
+
+  #cover-screen{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(7,15,36,0.35) 0%, rgba(7,15,36,0.85) 75%, var(--midnight) 100%),
+      radial-gradient(ellipse at 50% 20%, #25437c 0%, var(--midnight) 70%);
+    transition:opacity 1s ease, visibility 1s ease;
+  }
+
+  #cover-screen.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+
+  .cover-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.1rem;
+    max-width:480px;
+  }
+
+  .cover-greeting{
+    font-size:1.1rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--mist-blue);
+  }
+
+  .cover-inner .script{
+    font-size:3.2rem;
+    margin:0;
+  }
+
+  .cover-guest{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--moon-glow);
+  }
+
+  .open-btn{
+    margin-top:1rem;
+    display:inline-flex;
+    align-items:center;
+    gap:0.7rem;
+    padding:0.95rem 2.6rem;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(3px);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    letter-spacing:0.08em;
+    cursor:pointer;
+    transition:background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .open-btn:hover{
+    background:rgba(205,178,124,0.18);
+    transform:translateY(-2px);
+    box-shadow:0 0 24px rgba(205,178,124,0.35);
+  }
+
+  .open-btn .moon-icon{
+    font-size:1.3rem;
+    line-height:1;
+  }
+
+  .cover-date{
+    font-size:0.95rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--mist-blue);
+    opacity:0.85;
+  }
+
+  .cover-moon{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #ffffff, var(--moon-glow) 60%, #a9c4ec 100%);
+    box-shadow:0 0 40px 12px rgba(214,230,255,0.35), 0 0 80px 36px rgba(112,151,207,0.15);
+    margin-bottom:0.4rem;
+  }
+
+  .cover-name{
+    font-size:clamp(2.2rem, 7vw, 3.4rem);
+    font-style:italic;
+    background:linear-gradient(180deg, #ffffff, var(--moon-glow) 60%, var(--mist-blue));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+    margin:0;
+    line-height:1.15;
+  }
+
+  .cover-occasion{
+    font-size:0.95rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+
+  .cover-divider{
+    width:100%;
+    max-width:220px;
+    border-top:1px solid rgba(207,178,124,0.35);
+    position:relative;
+    margin:0.4rem 0;
+  }
+
+  .cover-divider span{
+    position:absolute;
+    top:-0.65em;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--midnight);
+    padding:0 0.6rem;
+    color:var(--gold);
+    font-size:0.9rem;
+  }
+
+  .cover-details{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:1.4rem;
+    margin:0.4rem 0;
+  }
+
+  .cover-detail{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.3rem;
+    min-width:140px;
+  }
+
+  .cover-detail-label{
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--mist-blue);
+  }
+
+  .cover-detail-value{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--ivory);
+  }
+
+  /* ---------- Music toggle ---------- */
+  .music-btn{
+    position:fixed;
+    bottom:1.5rem;
+    right:1.5rem;
+    z-index:60;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    background:rgba(15,35,71,0.65);
+    backdrop-filter:blur(4px);
+    color:var(--gold-soft);
+    font-size:1.3rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .music-btn:hover{
+    background:rgba(205,178,124,0.18);
+    box-shadow:0 0 20px rgba(205,178,124,0.35);
+  }
+
+  .music-btn.playing .music-icon{
+    animation:pulse-note 1.4s ease-in-out infinite;
+  }
+
+  .music-btn.paused .music-icon{
+    opacity:0.5;
+  }
+
+  @keyframes pulse-note{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.25);}
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- ================= COVER / ENVELOPE ================= -->
+<div id="cover-screen">
+  <div class="cover-inner">
+    <div class="cover-moon"></div>
+    <span class="cover-greeting">You Are Invited</span>
+    <span class="script">An Enchanted Evening</span>
+    <h2 class="cover-name">[Debutante's Full Name]</h2>
+    <span class="cover-occasion">Celebrating Her Eighteenth Birthday</span>
+
+    <div class="cover-divider"><span>✦</span></div>
+
+    <span class="cover-guest">Dear [Guest Name],</span>
+
+    <div class="cover-details">
+      <div class="cover-detail">
+        <span class="cover-detail-label">Date</span>
+        <span class="cover-detail-value">Saturday, July 4, 2026</span>
+      </div>
+      <div class="cover-detail">
+        <span class="cover-detail-label">Time</span>
+        <span class="cover-detail-value">3:00 in the Afternoon</span>
+      </div>
+      <div class="cover-detail">
+        <span class="cover-detail-label">Venue</span>
+        <span class="cover-detail-value">[Venue Name], [City]</span>
+      </div>
+    </div>
+
+    <button class="open-btn" id="open-invitation-btn" type="button">
+      <span class="moon-icon">🌙✦</span> Open Invitation
+    </button>
+  </div>
+</div>
+
+<div id="magic-bg"></div>
+
+<!-- ================= BACKGROUND MUSIC ================= -->
+<!--
+  Add your song file's URL inside the <source> tag below.
+  You can host an MP3 on Google Drive (set sharing to "Anyone with the link"),
+  Dropbox, or any file host that gives a direct link ending in .mp3
+-->
+<audio id="bg-music" loop>
+  <source src="Lana Del Rey - Young and Beautiful (from The Great Gatsby Soundtrack).mp3" type="audio/mpeg">
+</audio>
+
+<button id="music-toggle" class="music-btn" type="button" aria-label="Toggle background music">
+  <span class="music-icon">♪</span>
+</button>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="moon"></div>
+  <span class="eyebrow">Together with her family</span>
+  <span class="script">An Enchanted Evening Awaits</span>
+  <h1>The Debut of<br>[Debutante's Name]</h1>
+  <p class="subline">Eighteen candles, eighteen roses, and a night spun from moonlight &mdash; you are invited to step into the spell.</p>
+  <div class="date-chip">[Day, Month Date, Year] &bull; [Time]</div>
+  <span class="scroll-cue">Unfold the invitation ↓</span>
+</header>
+
+<!-- ================= INVITATION ================= -->
+<section class="invitation">
+  <div class="card">
+    <svg class="vine tl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 98C2 60 40 60 40 30C40 12 25 4 8 4" stroke="#cdb27c" stroke-width="2"/>
+      <circle cx="8" cy="4" r="4" fill="#e9dcb8"/>
+      <circle cx="40" cy="30" r="3" fill="#e9dcb8"/>
+    </svg>
+    <svg class="vine tr" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 98C2 60 40 60 40 30C40 12 25 4 8 4" stroke="#cdb27c" stroke-width="2"/>
+      <circle cx="8" cy="4" r="4" fill="#e9dcb8"/>
+      <circle cx="40" cy="30" r="3" fill="#e9dcb8"/>
+    </svg>
+    <svg class="vine bl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 98C2 60 40 60 40 30C40 12 25 4 8 4" stroke="#cdb27c" stroke-width="2"/>
+      <circle cx="8" cy="4" r="4" fill="#e9dcb8"/>
+      <circle cx="40" cy="30" r="3" fill="#e9dcb8"/>
+    </svg>
+    <svg class="vine br" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 98C2 60 40 60 40 30C40 12 25 4 8 4" stroke="#cdb27c" stroke-width="2"/>
+      <circle cx="8" cy="4" r="4" fill="#e9dcb8"/>
+      <circle cx="40" cy="30" r="3" fill="#e9dcb8"/>
+    </svg>
+
+    <h2>With hearts full of joy,</h2>
+    <p>
+      [Parent's Names] joyfully invite you to witness a magical milestone &mdash;
+      the eighteenth birthday of their beloved daughter
+    </p>
+    <p class="name-line">[Debutante's Full Name]</p>
+    <p>
+      An evening of enchantment, laughter, and cherished traditions awaits.
+      Come dressed in your most magical blue, and bring nothing but your
+      warmest wishes.
+    </p>
+  </div>
+</section>
+
+<!-- ================= DETAILS ================= -->
+<section class="details">
+  <p class="section-eyebrow">The Particulars</p>
+  <h2 class="section-title">Where the Magic Unfolds</h2>
+  <div class="details-grid">
+    <div class="detail-card">
+      <span class="icon">🌙</span>
+      <h3>Date &amp; Time</h3>
+      <p>[Day, Month Date, Year]<br>Cocktails at [Time]<br>Program begins at [Time]</p>
+    </div>
+    <div class="detail-card">
+      <span class="icon">🦋</span>
+      <h3>Venue</h3>
+      <p>[Venue Name]<br>[Street Address]<br>[City, Province]</p>
+    </div>
+    <div class="detail-card">
+      <span class="icon">✨</span>
+      <h3>Enchanted Attire</h3>
+      <p>Shades of blue, silver, and starlight.<br>Formal / cocktail attire.<br>No white, please.</p>
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="unit"><span class="num" id="cd-days">--</span><span class="label">Days</span></div>
+    <div class="unit"><span class="num" id="cd-hours">--</span><span class="label">Hours</span></div>
+    <div class="unit"><span class="num" id="cd-mins">--</span><span class="label">Minutes</span></div>
+    <div class="unit"><span class="num" id="cd-secs">--</span><span class="label">Seconds</span></div>
+  </div>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section class="rsvp" id="rsvp">
+  <p class="section-eyebrow">Will You Join the Spell?</p>
+  <h2 class="section-title">Kindly RSVP</h2>
+  <p class="rsvp-note">
+    Please let us know if you'll be joining the enchantment by
+    [RSVP Deadline Date]. Simply fill out the form below &mdash; your
+    response will be sent straight to us.
+  </p>
+
+  <div class="rsvp-frame-wrap">
+    <!--
+      STEP 1: Create a Google Form (see chat instructions for the full walkthrough).
+      STEP 2: Click "Send" on your form, choose the "<>" embed tab, and copy the src URL.
+      STEP 3: Replace the src below with that URL. It will look like:
+              https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXXXXXXXXXXXXX/viewform?embedded=true
+
+      <iframe src="REPLACE_WITH_YOUR_GOOGLE_FORM_EMBED_URL" loading="lazy">Loading…</iframe>
+    -->
+    <div class="rsvp-placeholder">
+      Your Google Form will appear here once connected.<br>
+      Replace the placeholder in the code with your form's embed link:
+      <code>&lt;iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"&gt;&lt;/iframe&gt;</code>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <span class="script">With love and starlight,</span>
+  <p>[Debutante's Name] &amp; Family</p>
+</footer>
+
+<script>
+  // ---- Generate twinkling stars ----
+  const bg = document.getElementById('magic-bg');
+  const starCount = 90;
+  for(let i=0;i<starCount;i++){
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = (2 + Math.random() * 4) + 's';
+    star.style.animationDelay = (Math.random() * 5) + 's';
+    bg.appendChild(star);
+  }
+
+  // ---- Generate drifting fireflies ----
+  const fireflyCount = 16;
+  for(let i=0;i<fireflyCount;i++){
+    const fly = document.createElement('div');
+    fly.className = 'firefly';
+    fly.style.left = Math.random() * 100 + '%';
+    fly.style.top = Math.random() * 100 + '%';
+    fly.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+    fly.style.setProperty('--dy', (Math.random() * 120 - 60) + 'px');
+    fly.style.animationDuration = (4 + Math.random() * 6) + 's';
+    fly.style.animationDelay = (Math.random() * 4) + 's';
+    bg.appendChild(fly);
+  }
+
+  // ---- Countdown ----
+  // Set the target date/time for the debut here:
+  const targetDate = new Date('2026-07-04T15:00:00');
+
+  function updateCountdown(){
+    const now = new Date();
+    let diff = targetDate - now;
+    if(diff < 0) diff = 0;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-mins').textContent = mins;
+    document.getElementById('cd-secs').textContent = secs;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- Cover screen ----
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-toggle');
+
+  document.getElementById('open-invitation-btn').addEventListener('click', function(){
+    document.getElementById('cover-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+    document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+
+    // Start music on this user interaction (browsers require a click/tap)
+    music.volume = 0.5;
+    music.play().then(() => {
+      musicBtn.classList.add('playing');
+      musicBtn.classList.remove('paused');
+    }).catch(() => {
+      // Autoplay was blocked; user can press the music button manually
+      musicBtn.classList.add('paused');
+    });
+  });
+
+  musicBtn.addEventListener('click', function(){
+    if(music.paused){
+      music.play();
+      musicBtn.classList.add('playing');
+      musicBtn.classList.remove('paused');
+    } else {
+      music.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.classList.add('paused');
+    }
+  });
+</script>
+
+</body>
+</html>
