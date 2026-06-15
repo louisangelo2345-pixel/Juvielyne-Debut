@@ -359,6 +359,51 @@
     word-break:break-all;
   }
 
+  /* ---------- Map ---------- */
+  .map-section{
+    text-align:center;
+  }
+
+  .map-wrap{
+    border:1px solid rgba(207,178,124,0.35);
+    border-radius:4px;
+    overflow:hidden;
+    width:100%;
+    aspect-ratio:16/9;
+    margin-bottom:1.5rem;
+  }
+
+  .map-wrap iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    filter:saturate(0.6) hue-rotate(185deg) brightness(0.85);
+  }
+
+  .directions-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.85rem 2.2rem;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    background:rgba(28,58,108,0.35);
+    backdrop-filter:blur(2px);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    transition:background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .directions-btn:hover{
+    background:rgba(205,178,124,0.18);
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(205,178,124,0.3);
+  }
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;
@@ -745,9 +790,22 @@
     <div class="rsvp-placeholder">
       Your Google Form will appear here once connected.<br>
       Replace the placeholder in the code with your form's embed link:
-      <code>"<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfG11STk3gOMUViX8djTyxLaFs_n2KqBvgUdJklmSUCr4l1hQ/viewform?embedded=true" width="640" height="1088" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>"</code>
+      <code>&lt;iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfG11STk3gOMUViX8djTyxLaFs_n2KqBvgUdJklmSUCr4l1hQ/viewform"&gt;&lt;/iframe&gt;</code>
     </div>
   </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<section class="map-section">
+  <p class="section-eyebrow">Find Us</p>
+  <h2 class="section-title">How to Get There</h2>
+  <p class="rsvp-note">We can't wait to see you! Here's where the enchantment unfolds.</p>
+  <div class="map-wrap">
+    <iframe src="https://www.google.com/maps/embed?pb=!4v1781481901550!6m8!1m7!1siUDwdNQZRDWU7WbsxehcJA!2m2!1d16.81641246664116!2d120.4017094259006!3f36.26396992648364!4f-7.263079379511112!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <a class="directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=16.81641246664116,120.4017094259006" target="_blank" rel="noopener">
+    🗺️ Get Directions
+  </a>
 </section>
 
 <!-- ================= FOOTER ================= -->
